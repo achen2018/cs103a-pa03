@@ -303,8 +303,8 @@ app.post('/courses/byInst',
 
 app.post('/courses/byKeyword',
   // @author Angelo Cataldo
-  // UNTESTED
-  // show courses taught by a faculty send from a form
+  // the keyword is treated as case insensitive
+  // show courses with their title containing the keyword sent from a form
   async (req,res,next) => {
     const keyword = req.body.keyword;
     const courses = 
