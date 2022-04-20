@@ -301,6 +301,23 @@ app.post('/courses/byInst',
   }
 )
 
+app.post('/courses/byKeyword',
+  // @author Angelo Cataldo
+  // UNTESTED
+  // show courses taught by a faculty send from a form
+  async (req,res,next) => {
+    const keyword = req.body.keyword;
+    const courses = 
+       await Course
+  .find({title: new RegExp(keyword, 'i')})
+               .sort({term:1,num:1,section:1})
+    //res.json(courses)
+    res.locals.courses = courses
+    res.locals.times2str = times2str
+    res.render('courselist')
+  }
+)
+
 app.use(isLoggedIn)
 
 app.get('/addCourse/:courseId',
